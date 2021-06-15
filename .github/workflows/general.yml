@@ -1,0 +1,28 @@
+name: General tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        deno: ["nightly"]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: denolib/setup-deno@v2
+        with:
+          deno-version: ${{ matrix.deno }}
+
+      - name: Run Base tests
+        run: deno test -A tests/base.ts
+        env:
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          PROJECT_KEY: ${{ secrets.PROJECT_KEY }}
+          BASE_DATABASE_NAME: ${{ secrets.BASE_DATABASE_NAME }}
