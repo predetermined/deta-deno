@@ -6,7 +6,7 @@ An unofficial Deta.sh API client for Deno
 
 ## Usage
 ### Creating a new client
-You can find your credentials in your Deta projects settings.
+You can find your credentials in your Deta project settings.
 ```typescript
 import Deta from "https://deno.land/x/deta/mod.ts";
 
