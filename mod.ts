@@ -6,19 +6,11 @@ export interface ProjectDetails {
 }
 
 export default class Deta {
-  private readonly projectId: string;
-  private readonly projectKey: string;
+  private readonly project: ProjectDetails;
   public readonly Base: { new (databaseName: string): Base };
 
-  constructor({
-    projectId,
-    projectKey,
-  }: {
-    projectId: string;
-    projectKey: string;
-  }) {
-    this.projectId = projectId;
-    this.projectKey = projectKey;
-    this.Base = Base.bind(this, { id: this.projectId, key: this.projectKey });
+  constructor(project: ProjectDetails) {
+    this.project = project;
+    this.Base = Base.bind(this, project);
   }
 }
