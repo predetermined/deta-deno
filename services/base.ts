@@ -3,7 +3,6 @@ import { ProjectDetails } from "../mod.ts";
 
 type SingleInsertData = Record<string, unknown>;
 type InsertData = SingleInsertData[];
-type InteractionReturnValue = Promise<{ data?: any; error?: string }>;
 
 interface QueryResultItem {
   key: string;
@@ -34,7 +33,7 @@ export default class Base extends Template {
 
   public async insert(
     data: SingleInsertData | InsertData
-  ): Promise<{ processed: { items: QueryResultItem } }> {
+  ): Promise<{ processed: { items: QueryResultItem[] } }> {
     return await (
       await this.request("PUT", {
         suffix: "items",
