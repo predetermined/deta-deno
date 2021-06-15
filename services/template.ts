@@ -13,7 +13,6 @@ export class Template {
     method: string,
     { body, suffix }: { body?: any; suffix?: any }
   ) {
-    console.log(this.apiUrl + suffix, this.project.key);
     return await fetch(this.apiUrl + suffix, {
       method: method,
       body: JSON.stringify(body),
