@@ -5,12 +5,20 @@ export interface ProjectDetails {
   key: string;
 }
 
+interface ProjectDetailsWithMoreContext {
+  projectId: string;
+  projectKey: string;
+}
+
 export default class Deta {
   private readonly project: ProjectDetails;
   public readonly Base: { new (databaseName: string): Base };
 
-  constructor(project: ProjectDetails) {
-    this.project = project;
-    this.Base = Base.bind(this, project);
+  constructor({
+    projectId: id,
+    projectKey: key,
+  }: ProjectDetailsWithMoreContext) {
+    this.project = { id, key };
+    this.Base = Base.bind(this, this.project);
   }
 }
